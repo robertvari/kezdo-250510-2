@@ -31,5 +31,36 @@ def get_player_guess():
     
     return int(result)
 
+def game_loop():
+    clear_screen()
+
+    tries = 3
+    print(f"You have {tries} tries.")
+
+    min_number = 1
+    max_number = 10
+    magic_number = random.randint(min_number, max_number)
+
+    player_guess = get_player_guess()
+
+    while magic_number != player_guess:
+        tries -=1
+        if tries == 0: break
+        
+        clear_screen()
+        print(f"Wrong guess. You have {tries} tries left. Try again.")
+        player_guess = get_player_guess()
+    
+    clear_screen()
+    if magic_number == player_guess:
+        print("You win! :))")
+    else:
+        print("You lost this round")
+
+    player_response = input("Do you want to play again? (y/n)")
+    if player_response == "y":
+        game_loop()
+    else:
+        exit_game()
 
 main()
