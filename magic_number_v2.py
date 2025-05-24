@@ -1,9 +1,9 @@
 import os, random
 
 def main():
-    pass
+    intro()
 
-def intor():
+def intro():
     clear_screen()
     print("-"*50, "MAGIC NUMBER", "-"*50)
     print("I have number between 1 and 10. Can you guess it?")
@@ -18,3 +18,7 @@ def clear_screen():
         os.system("cls")
     else:
         os.system("clear")
+
+
+
+main()
