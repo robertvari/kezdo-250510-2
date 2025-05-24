@@ -1,7 +1,9 @@
-import os, random
+import os, random, time
 
 def main():
     intro()
+    time.sleep(5)
+    game_loop()
 
 def intro():
     clear_screen()
