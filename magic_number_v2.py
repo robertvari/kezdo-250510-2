@@ -19,6 +19,17 @@ def clear_screen():
     else:
         os.system("clear")
 
+def get_player_guess():
+    result = input("What is your guess? ")
+
+    valid_numbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
+
+    while result not in valid_numbers:
+        clear_screen()
+        print("Wrong number.")
+        result = input("What is your guess? ")
+    
+    return int(result)
 
 
 main()
