@@ -2,7 +2,7 @@ import os, random, time
 
 MIN_NUMBER = 1
 MAX_NUMBER = 100
-CREDITS = 10
+CREDITS = 1
 
 
 def main():
@@ -65,8 +65,10 @@ def end_game_conditions(magic_number, player_guess):
     clear_screen()
     if magic_number == player_guess:
         print("You win! :))")
+        update_credits(1)
     else:
         print("You lost this round")
+        update_credits(-1)
 
     player_response = input("Do you want to play again? (y/n)")
     if player_response == "y":
@@ -74,5 +76,15 @@ def end_game_conditions(magic_number, player_guess):
     else:
         exit_game()
 
+def update_credits(value):
+    global CREDITS
+
+    CREDITS += value
+
+    if value > 0:
+        print(f"You win {value} credit.")
+    else:
+        print(f"You lost {value} credits.")
+    print(f"You have {CREDITS} credits.")
 
 main()
