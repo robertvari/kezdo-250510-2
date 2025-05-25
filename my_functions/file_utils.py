@@ -17,6 +17,8 @@ def get_files(root_folder: str, file_list: list, filter: str=None):
     if filter:
         assert isinstance(filter, str), "filter must be a type of string."
 
+    print(f"Searching in {root_folder}...")
+
     # collect files and folders in root_folder
     folder_content = os.listdir(root_folder)
 
@@ -26,8 +28,12 @@ def get_files(root_folder: str, file_list: list, filter: str=None):
         abs_path = os.path.join(root_folder, i)
         if os.path.isfile(abs_path):
             # add files to file_list
-            # TODO if we have filter check file
-            file_list.append(abs_path)
+            # if we have filter check file
+            if filter:
+                if filter in abs_path:
+                    file_list.append(abs_path)
+            else:
+                file_list.append(abs_path)
         else:
             # collect folders
             folders.append(abs_path)
@@ -39,6 +45,9 @@ def get_files(root_folder: str, file_list: list, filter: str=None):
 if __name__ == "__main__":
     my_photos = []
     # r = raw string
-    get_files(r"C:\Work\PythonSuli", my_photos, filter=".jpg")
+    get_files(r"C:\Work\PythonSuli", my_photos, filter=".txt")
+
+    for i in my_photos:
+        print(i)
 
     print(f"Found files: {len(my_photos)}")
