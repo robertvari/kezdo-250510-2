@@ -1,5 +1,4 @@
 import os
-
 def get_files(root_folder: str, file_list: list, filter: str=None):
     """
     This function finds files in a given folder and its subfolders. 
@@ -46,8 +45,5 @@ if __name__ == "__main__":
     my_photos = []
     # r = raw string
     get_files(r"C:\Work\PythonSuli", my_photos, filter=".txt")
-
-    for i in my_photos:
-        print(i)
 
     print(f"Found files: {len(my_photos)}")
