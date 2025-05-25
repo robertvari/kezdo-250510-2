@@ -1,15 +1,22 @@
 import os, random, time
 
+MIN_NUMBER = 1
+MAX_NUMBER = 100
+CREDITS = 10
+
+
 def main():
     intro()
-    time.sleep(5)
+    input("Press Enter to continue...")
     game_loop()
 
 def intro():
     clear_screen()
     print("-"*50, "MAGIC NUMBER", "-"*50)
-    print("I have number between 1 and 10. Can you guess it?")
+    print(f"I have a number between {MIN_NUMBER} and {MAX_NUMBER}. Can you guess it?")
     print("You have 3 tries to guess.")
+    print(f"You start with {CREDITS} credits. If you can guess my number you win 1 credit.")
+    print("But if you lost all your credits the game ends.\n")
 
 def exit_game():
     clear_screen()
@@ -39,9 +46,8 @@ def game_loop():
     tries = 3
     print(f"You have {tries} tries.")
 
-    min_number = 1
-    max_number = 10
-    magic_number = random.randint(min_number, max_number)
+    magic_number = random.randint(MIN_NUMBER, MAX_NUMBER)
+    magic_number = 5  # for testing the game
 
     player_guess = get_player_guess()
 
@@ -53,6 +59,9 @@ def game_loop():
         print(f"Wrong guess. You have {tries} tries left. Try again.")
         player_guess = get_player_guess()
     
+    end_game_conditions(magic_number, player_guess)
+
+def end_game_conditions(magic_number, player_guess):
     clear_screen()
     if magic_number == player_guess:
         print("You win! :))")
@@ -64,5 +73,6 @@ def game_loop():
         game_loop()
     else:
         exit_game()
+
 
 main()
