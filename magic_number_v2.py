@@ -69,12 +69,17 @@ def end_game_conditions(magic_number, player_guess):
     else:
         print("You lost this round")
         update_credits(-1)
-
-    player_response = input("Do you want to play again? (y/n)")
-    if player_response == "y":
-        game_loop()
+    
+    if CREDITS > 0:
+        player_response = input("Do you want to play again? (y/n)")
+        if player_response == "y":
+            game_loop()
+        else:
+            exit_game()
     else:
-        exit_game()
+        clear_screen()
+        print("You lost all your credits.")
+        print("Game Over")
 
 def update_credits(value):
     global CREDITS
